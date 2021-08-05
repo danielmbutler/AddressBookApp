@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -33,6 +35,24 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //navigation components
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //architecture components
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_liveData_version"
+
+    //room persistence library
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+
 }
