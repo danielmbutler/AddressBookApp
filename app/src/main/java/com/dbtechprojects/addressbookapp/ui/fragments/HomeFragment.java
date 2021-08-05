@@ -69,6 +69,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AddC
 
     @Override
     public void saveContact(Contact contact) {
-        Log.d("contact received", String.valueOf(contact));
+        Log.d("contact received", String.valueOf(contact.dob));
     }
 }

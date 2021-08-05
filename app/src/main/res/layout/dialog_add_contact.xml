@@ -69,15 +69,18 @@
             android:id="@+id/textField_date_picker_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:hint="@string/date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textField_email"
             android:paddingTop="@dimen/text_field_margin"
-            >
+            android:focusable="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/date_picker_text"
+                android:focusableInTouchMode="false"
                 android:layout_height="wrap_content"
                 />
 
@@ -94,11 +97,12 @@
             android:paddingTop="@dimen/text_field_margin"
             >
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="Phone number.."
+                android:inputType="number"
                 android:digits="0123456789+"
                 android:minHeight="48dp"
                 />
