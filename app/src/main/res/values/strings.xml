@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AddressBookApp</string>
+    <string name="contacts">Contacts</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="first_name">First name..</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="last_name">Last name ...</string>
+    <string name="date">DOB: dd:mm:yyyy</string>
+    <string name="address">Address..</string>
+    <string name="postcode">Postcode..</string>
+    <string name="city">City..</string>
+    <string name="email">Email..</string>
+</resources>
