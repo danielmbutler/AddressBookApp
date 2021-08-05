@@ -10,4 +10,5 @@
     <color name="MainBg">#3B73DF</color>
     <color name="ButtonYellow">#FFCD01</color>
     <color name="ButtonRed">#FF0000</color>
+    <color name="textColor">#616161</color>
 </resources>

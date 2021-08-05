@@ -12,4 +12,7 @@
     <string name="phone_number">Phone number..</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="delete_contact">delete contact</string>
+    <string name="call_contact">call contact</string>
+    <string name="first_name">First name..</string>
 </resources>

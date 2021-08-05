@@ -3,40 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="6dp"
+    android:background="@color/white"
+    android:layout_margin="6dp"
     android:layout_height="100dp">
 
     <TextView
-        android:id="@+id/rv_item_tv_SendMessage"
-        android:layout_width="wrap_content"
+        android:id="@+id/rv_item_tv_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/white"
-        android:text="Send Message"
-        app:layout_constraintEnd_toEndOf="@+id/rv_item_iv_message"
-        app:layout_constraintStart_toStartOf="@+id/rv_item_iv_message"
-        app:layout_constraintTop_toBottomOf="@+id/rv_item_iv_message" />
-
-    <TextView
-        android:id="@+id/rv_item_tv_PhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="18sp"
+        android:text="@string/first_name"
+        android:textColor="@color/textColor"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
-        app:layout_constraintStart_toEndOf="@+id/rv_item_ivphone"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rv_item_ivphone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/rv_item_ivphone"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/call_contact"
+        app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+
+    <ImageView
+        android:id="@+id/rv_item_delete"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/delete_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

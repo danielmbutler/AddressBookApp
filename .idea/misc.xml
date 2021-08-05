@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Daniel/AndroidStudioProjects/AddressBookApp/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/AddressBookApp/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/AddressBookApp/app/src/main/res/layout/dialog_send_message.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/AddressBookApp/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
