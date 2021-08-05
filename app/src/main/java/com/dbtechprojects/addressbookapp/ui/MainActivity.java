@@ -1,8 +1,10 @@
-package com.dbtechprojects.addressbookapp;
+package com.dbtechprojects.addressbookapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.dbtechprojects.addressbookapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
