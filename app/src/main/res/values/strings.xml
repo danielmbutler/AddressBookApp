@@ -14,5 +14,9 @@
     <string name="cancel">Cancel</string>
     <string name="delete_contact">delete contact</string>
     <string name="call_contact">call contact</string>
-    <string name="to_add_a_contact_please_click_the_button_in_right_hand_corner">To add a contact please click the \'+\' button in the right hand corner</string>
+    <string name="to_add_a_contact_please_click_the_button_in_right_hand_corner">To add a contact please click the \'+\' button in the right hand corner</string>D
+    <string name="validate_firstName_Error">"Please provide a first name longer than one character"</string>
+    <string name="validate_lastname_Error">"Please provide a last name longer than one character"</string>
+    <string name="validate_email_Error">"Please provide a correct email"</string>
+    <string name="validate_phone_Error">"Please provide a correct phone number (10 numbers)"</string>
 </resources>

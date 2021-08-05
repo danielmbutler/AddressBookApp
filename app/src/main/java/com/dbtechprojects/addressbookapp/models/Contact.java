@@ -41,4 +41,5 @@ public class Contact {
         this.postcode = postcode;
         this.dob = dob;
     }
+
 }

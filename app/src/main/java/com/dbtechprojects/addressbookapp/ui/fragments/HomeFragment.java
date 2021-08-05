@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.dbtechprojects.addressbookapp.databinding.FragmentHomeBinding;
 import com.dbtechprojects.addressbookapp.models.Contact;
 import com.dbtechprojects.addressbookapp.ui.dialogs.AddContactDialog;
+
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -27,10 +30,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding = FragmentHomeBinding.inflate(inflater);
         return binding.getRoot();
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (contacts == null){
+        if (contacts == null) {
             binding.placeholderText.setVisibility(View.VISIBLE);
         }
         binding.addContactButton.setOnClickListener(this);
