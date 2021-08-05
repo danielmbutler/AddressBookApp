@@ -14,4 +14,5 @@
     <string name="cancel">Cancel</string>
     <string name="delete_contact">delete contact</string>
     <string name="call_contact">call contact</string>
+    <string name="to_add_a_contact_please_click_the_button_in_right_hand_corner">To add a contact please click the \'+\' button in the right hand corner</string>
 </resources>

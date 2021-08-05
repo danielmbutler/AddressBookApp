@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/messagesFragment"
-    android:layout_height="match_parent"
+    android:id="@+id/Add_Contact_Dialog_fragment"
+    android:layout_height="wrap_content"
     android:background="@color/MainBg"
+    android:scrollbarThumbVertical="@android:color/white"
+    android:scrollbars="vertical"
+    android:padding="@dimen/layout_padding"
     tools:context=".ui.dialogs.AddContactDialog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/text_field_margin"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -190,17 +193,20 @@
             />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cancel_button"
-            android:textStyle="bold"
-            android:text="@string/cancel"
             android:layout_marginTop="@dimen/text_field_margin"
-            app:layout_constraintTop_toBottomOf="@id/Save_button"
+            android:layout_marginBottom="@dimen/text_field_margin"
+            android:backgroundTint="@color/ButtonRed"
+            android:text="@string/cancel"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:backgroundTint="@color/ButtonRed"
-            />
+            app:layout_constraintTop_toBottomOf="@id/Save_button" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>
