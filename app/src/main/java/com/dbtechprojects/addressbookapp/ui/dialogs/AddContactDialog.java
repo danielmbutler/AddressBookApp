@@ -3,17 +3,14 @@ package com.dbtechprojects.addressbookapp.ui.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.versionedparcelable.ParcelUtils;
 
 import com.dbtechprojects.addressbookapp.R;
 import com.dbtechprojects.addressbookapp.databinding.DialogAddContactBinding;
@@ -30,6 +27,11 @@ public class AddContactDialog extends DialogFragment {
 
     private DialogAddContactBinding binding;
     List<TextInputLayout> errorTextFields;
+    SaveContact saveListener;
+
+    public AddContactDialog(SaveContact saveListener){
+        this.saveListener = saveListener;
+    }
 
 
     @Nullable
@@ -49,17 +51,13 @@ public class AddContactDialog extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupClickListeners();
-        errorTextFields = new ArrayList<TextInputLayout>();
+        errorTextFields = new ArrayList<>();
 
     }
 
     private void setupClickListeners() {
-        binding.cancelButton.setOnClickListener(v -> {
-            this.dismiss();
-        });
-        binding.SaveButton.setOnClickListener(v -> {
-            validateFields();
-        });
+        binding.cancelButton.setOnClickListener(v -> this.dismiss());
+        binding.SaveButton.setOnClickListener(v -> validateFields());
     }
 
     private void validateFields() {
@@ -98,7 +96,7 @@ public class AddContactDialog extends DialogFragment {
                 Objects.requireNonNull(binding.textFieldDatePickerLayout.getEditText()).getText().toString()
         );
 
-        Log.d("contact", String.valueOf(contact));
+        saveListener.saveContact(contact);
 
     }
 
@@ -121,7 +119,7 @@ public class AddContactDialog extends DialogFragment {
         binding = null;
     }
 
-    interface SaveContact {
+    public interface SaveContact {
         public void saveContact(Contact contact);
     }
 

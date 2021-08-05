@@ -1,6 +1,7 @@
 package com.dbtechprojects.addressbookapp.ui.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, AddContactDialog.SaveContact {
 
     private FragmentHomeBinding binding;
     private List<Contact> contacts;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void showAddContactDialog() {
-        AddContactDialog dialogFragment = new AddContactDialog();
+        AddContactDialog dialogFragment = new AddContactDialog(this);
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
         Fragment prev = getParentFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
@@ -64,5 +65,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
         ft.addToBackStack(null);
         dialogFragment.show(ft, "dialog");
+    }
+
+    @Override
+    public void saveContact(Contact contact) {
+        Log.d("contact received", String.valueOf(contact));
     }
 }
