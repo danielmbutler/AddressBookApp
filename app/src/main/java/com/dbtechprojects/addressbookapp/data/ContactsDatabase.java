@@ -13,15 +13,15 @@ import com.dbtechprojects.addressbookapp.models.ContactsDatabaseDao;
 
 public abstract class ContactsDatabase extends RoomDatabase {
     private static final String DB_NAME = "contacts_database";
-    private static ContactsDatabase countriesDatabase;
+    private static ContactsDatabase contactsDatabase;
 
     public static synchronized ContactsDatabase getContactsDatabase(Context context) {
-        if (countriesDatabase == null) {
-            countriesDatabase = Room.databaseBuilder(context.getApplicationContext(), ContactsDatabase.class, DB_NAME)
+        if (contactsDatabase == null) {
+            contactsDatabase = Room.databaseBuilder(context.getApplicationContext(), ContactsDatabase.class, DB_NAME)
                     .fallbackToDestructiveMigration()
                     .build();
         }
-        return countriesDatabase;
+        return contactsDatabase;
     }
 
     public abstract ContactsDatabaseDao getDao();

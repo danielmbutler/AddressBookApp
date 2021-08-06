@@ -120,7 +120,6 @@ public class HomeFragment extends Fragment
     private void showAddContactDialog() {
         AddContactDialog dialogFragment = new AddContactDialog(this);
         dialogFragment.show(addContactDialogTransaction(), "dialog");
-
     }
 
     private FragmentTransaction addContactDialogTransaction() {

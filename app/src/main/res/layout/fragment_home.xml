@@ -25,8 +25,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/contacts_recycler_View"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="48dp"
+            android:layout_marginBottom="@dimen/layout_padding"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/phone_number_item"
