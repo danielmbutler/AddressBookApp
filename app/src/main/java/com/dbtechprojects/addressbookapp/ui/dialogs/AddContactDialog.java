@@ -16,7 +16,6 @@ import com.dbtechprojects.addressbookapp.R;
 import com.dbtechprojects.addressbookapp.databinding.DialogAddContactBinding;
 import com.dbtechprojects.addressbookapp.models.Contact;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -105,15 +104,11 @@ public class AddContactDialog extends DialogFragment {
     }
 
     private void openDatePicker() {
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        MaterialDatePicker.Builder<Long> materialDateBuilder = MaterialDatePicker.Builder.datePicker();
 
-        // now define the properties of the
-        // materialDateBuilder that is title text as SELECT A DATE
         materialDateBuilder.setTitleText("SELECT A DOB");
 
-        // now create the instance of the material date
-        // picker
-        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+        final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
         materialDatePicker.show(getChildFragmentManager(), "picker");
 
         materialDatePicker.addOnPositiveButtonClickListener(selection ->
@@ -143,7 +138,7 @@ public class AddContactDialog extends DialogFragment {
     }
 
     public interface SaveContact {
-        public void saveContact(Contact contact);
+        void saveContact(Contact contact);
     }
 
 }

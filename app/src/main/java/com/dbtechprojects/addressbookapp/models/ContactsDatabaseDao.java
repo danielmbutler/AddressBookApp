@@ -16,7 +16,7 @@ public interface ContactsDatabaseDao {
     LiveData<List<Contact>> getAllContacts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertContact(Contact contact);
+    void insertContact(Contact contact);
 
     @Delete
     Completable deleteContact(Contact contact);

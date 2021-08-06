@@ -10,10 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dbtechprojects.addressbookapp.databinding.FragmentHomeBinding;
 import com.dbtechprojects.addressbookapp.models.Contact;
 import com.dbtechprojects.addressbookapp.ui.dialogs.AddContactDialog;
+import com.dbtechprojects.addressbookapp.ui.viewmodels.HomeViewModel;
 
 import java.util.List;
 
@@ -24,6 +26,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AddC
 
     private FragmentHomeBinding binding;
     private List<Contact> contacts;
+    private HomeViewModel viewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+    }
 
     @Nullable
     @Override
@@ -35,10 +44,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AddC
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (contacts == null) {
-            binding.placeholderText.setVisibility(View.VISIBLE);
-        }
+
+
+        initObservers();
         binding.addContactButton.setOnClickListener(this);
+    }
+
+    private void initObservers() {
+        viewModel.getAllContacts().observe(getViewLifecycleOwner(), contacts -> {
+            if (contacts == null || contacts.isEmpty()){
+                binding.placeholderText.setVisibility(View.VISIBLE);
+            } else Log.d("contacts", contacts.toString());
+        });
     }
 
     @Override
@@ -69,6 +86,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AddC
 
     @Override
     public void saveContact(Contact contact) {
-        Log.d("contact received", String.valueOf(contact.dob));
+        viewModel.saveContact(contact);
     }
 }
