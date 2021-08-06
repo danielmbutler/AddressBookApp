@@ -1,5 +1,5 @@
 # AddressBookApp
-Java Address Book App - create, update delete and call contacts.
+Java address book app - create, update delete and call contacts.
 
 # Home Screen
 <p align="center">
