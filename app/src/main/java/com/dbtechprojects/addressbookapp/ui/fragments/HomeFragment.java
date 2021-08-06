@@ -1,7 +1,11 @@
 package com.dbtechprojects.addressbookapp.ui.fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +13,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,8 +33,7 @@ public class HomeFragment extends Fragment
         View.OnClickListener,
         AddContactDialog.SaveContact,
         ContactsAdapter.onCallListener,
-        ContactsAdapter.onDeleteListener
-{
+        ContactsAdapter.onDeleteListener {
 
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
@@ -59,10 +63,10 @@ public class HomeFragment extends Fragment
 
     private void initObservers() {
         viewModel.getAllContacts().observe(getViewLifecycleOwner(), contacts -> {
-            if (contacts == null || contacts.isEmpty()){
+            if (contacts == null || contacts.isEmpty()) {
                 binding.placeholderText.setVisibility(View.VISIBLE);
-            } else{
-                if (adapter != null){
+            } else {
+                if (adapter != null) {
                     adapter.setDataSet(contacts);
                     binding.placeholderText.setVisibility(View.GONE);
                 }
@@ -132,6 +136,24 @@ public class HomeFragment extends Fragment
 
     @Override
     public void onCall(Contact contact) {
+        //execute phone call
+        executePhoneCall(contact);
 
     }
+
+    private void executePhoneCall(Contact contact) {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.CALL_PHONE) ==
+                PackageManager.PERMISSION_GRANTED) {
+            // permissions granted so we can complete the call
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:" + contact.phone));
+            startActivity(callIntent);
+        } else {
+            //Ask for phone call permission
+
+        }
+    }
+
+
 }
