@@ -8,11 +8,11 @@
     android:background="@color/MainBg"
     android:scrollbarThumbVertical="@android:color/white"
     android:scrollbars="vertical"
-    android:padding="@dimen/layout_padding"
     tools:context=".ui.dialogs.AddContactDialog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:padding="22dp"
         android:layout_height="wrap_content">
 
 

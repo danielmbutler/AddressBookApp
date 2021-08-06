@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.dbtechprojects.addressbookapp.models.Contact;
 import com.dbtechprojects.addressbookapp.models.ContactsDatabaseDao;
+import com.dbtechprojects.addressbookapp.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class HomeViewModel extends ViewModel {
         return contactsDatabaseDao.getAllContacts();
     }
 
+    public SingleLiveEvent<String> dbMessages = new SingleLiveEvent<String>();
+
     @Inject
     public HomeViewModel(ContactsDatabaseDao dao) {
         this.contactsDatabaseDao = dao;
@@ -35,6 +38,7 @@ public class HomeViewModel extends ViewModel {
                 .insertContact(contact))
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()
+                .doOnComplete(() -> dbMessages.postValue("Contact saved"))
                 .subscribe();
 
     }
@@ -44,6 +48,7 @@ public class HomeViewModel extends ViewModel {
                 .deleteContact(contact))
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()
+                .doOnComplete(() -> dbMessages.postValue("Contact deleted"))
                 .subscribe();
 
     }

@@ -30,6 +30,8 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -77,11 +79,19 @@ public class HomeFragment extends Fragment
         viewModel.getAllContacts().observe(getViewLifecycleOwner(), contacts -> {
             if (contacts == null || contacts.isEmpty()) {
                 binding.placeholderText.setVisibility(View.VISIBLE);
+                adapter.setDataSet(new ArrayList<>());
             } else {
                 if (adapter != null) {
                     adapter.setDataSet(contacts);
                     binding.placeholderText.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        // observe messages from db events
+        viewModel.dbMessages.observe(getViewLifecycleOwner(), message -> {
+            if (message != null  && !message.isEmpty()){
+                Constants.showToast(message, requireContext());
             }
         });
     }
