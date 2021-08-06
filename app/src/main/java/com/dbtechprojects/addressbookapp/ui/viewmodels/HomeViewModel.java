@@ -38,4 +38,13 @@ public class HomeViewModel extends ViewModel {
                 .subscribe();
 
     }
+
+    public void deleteContact(Contact contact) {
+        Completable.fromAction(() -> contactsDatabaseDao
+                .deleteContact(contact))
+                .subscribeOn(Schedulers.io())
+                .onErrorComplete()
+                .subscribe();
+
+    }
 }

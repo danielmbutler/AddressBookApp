@@ -43,4 +43,7 @@ public class Contact {
         this.dob = dob;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 }

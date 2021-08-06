@@ -19,7 +19,7 @@ public interface ContactsDatabaseDao {
     void insertContact(Contact contact);
 
     @Delete
-    Completable deleteContact(Contact contact);
+    void deleteContact(Contact contact);
 
 }
 

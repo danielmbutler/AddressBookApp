@@ -6,7 +6,7 @@
     android:padding="6dp"
     android:background="@color/white"
     android:layout_margin="6dp"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/rv_item_tv_name"
@@ -15,7 +15,7 @@
         android:text="@string/first_name"
         android:textColor="@color/textColor"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rv_item_ivphone"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,24 +23,24 @@
 
     <ImageView
         android:id="@+id/rv_item_ivphone"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/call_contact"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_item_tv_name"
         app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name"
         app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
     <ImageView
         android:id="@+id/rv_item_delete"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/delete_contact"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
