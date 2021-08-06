@@ -18,8 +18,8 @@ Java Address Book App - create, update delete and call contacts.
 ## Features Implemented
 
 * Create, Delete and Update contacts.
-* Contacts stored in Room DB (SQLITE abstraction library)
-* Direct phone call from within the app
+* Contacts stored in Room DB (SQLITE abstraction library).
+* Direct phone call from within the app.
 * Email and phone number validation for forms (DOB field also forces the use of a datepicker).
 
 ## Libraries Used
