@@ -1,7 +1,7 @@
 # AddressBookApp
 Java Address Book App - create, update delete and call contacts.
 
-# Home screen
+# Home Screen
 <p align="center">
   <img src="https://github.com/danielmbutler/AddressBookApp/blob/master/resources/homefragment.PNG" width="250" >
 </p>
