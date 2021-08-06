@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "contacts")
-public class Contact {
+public class Contact implements Serializable {
 
     @PrimaryKey
     @NonNull
@@ -43,7 +45,4 @@ public class Contact {
         this.dob = dob;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
 }

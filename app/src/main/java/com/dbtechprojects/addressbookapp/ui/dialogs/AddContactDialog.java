@@ -27,6 +27,7 @@ import java.util.UUID;
 public class AddContactDialog extends DialogFragment {
 
     private DialogAddContactBinding binding;
+    private Contact editContact;
     List<TextInputLayout> errorTextFields;
     SaveContact saveListener;
 
@@ -53,7 +54,25 @@ public class AddContactDialog extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         setupClickListeners();
         errorTextFields = new ArrayList<>();
+        if (getArguments() != null && getArguments().getSerializable("edit") != null){
+            // user is in edit mode
+            setupEditMode();
+        }
 
+    }
+
+    private void setupEditMode() {
+        binding.SaveButton.setText(R.string.update);
+        Contact contact = (Contact) getArguments().getSerializable("edit");
+        editContact = contact;
+        if (contact.firstName != null) binding.textFieldFirstName.getEditText().setText(contact.firstName);
+        if (contact.lastName != null) binding.textFieldLastName.getEditText().setText(contact.lastName);
+        if (contact.email != null) binding.textFieldEmail.getEditText().setText(contact.email);
+        if (contact.phone != null) binding.editextPhonenumber.getEditText().setText(contact.phone);
+        if (contact.postcode != null) binding.textFieldPostCode.getEditText().setText(contact.postcode);
+        if (contact.city != null) binding.textfieldCity.getEditText().setText(contact.city);
+        if (contact.address != null) binding.textFieldAddress.getEditText().setText(contact.address);
+        if (contact.dob != null) binding.textFieldDatePickerLayout.getEditText().setText(contact.dob);
     }
 
     private void setupClickListeners() {
@@ -86,8 +105,12 @@ public class AddContactDialog extends DialogFragment {
             return;
         }
 
+        String uid;
+        if (editContact != null){
+            uid = editContact.id;
+        } else uid = UUID.randomUUID().toString();
         Contact contact = new Contact(
-                UUID.randomUUID().toString(),
+                uid,
                 binding.textFieldFirstName.getEditText().getText().toString(),
                 binding.textFieldLastName.getEditText().getText().toString(),
                 binding.textFieldEmail.getEditText().getText().toString(),

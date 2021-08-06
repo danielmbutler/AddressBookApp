@@ -40,7 +40,10 @@ public class HomeFragment extends Fragment
         View.OnClickListener,
         AddContactDialog.SaveContact,
         ContactsAdapter.onCallListener,
-        ContactsAdapter.onDeleteListener {
+        ContactsAdapter.onDeleteListener,
+        ContactsAdapter.onEditListener
+
+{
 
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
@@ -84,7 +87,7 @@ public class HomeFragment extends Fragment
     }
 
     private void setupRecyclerView() {
-        adapter = new ContactsAdapter(this, this);
+        adapter = new ContactsAdapter(this, this, this);
         binding.contactsRecyclerView.setAdapter(adapter);
 
     }
@@ -106,13 +109,19 @@ public class HomeFragment extends Fragment
 
     private void showAddContactDialog() {
         AddContactDialog dialogFragment = new AddContactDialog(this);
+        dialogFragment.show(addContactDialogTransaction(), "dialog");
+
+    }
+
+    private FragmentTransaction addContactDialogTransaction() {
+
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
         Fragment prev = getParentFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        dialogFragment.show(ft, "dialog");
+        return ft;
     }
 
     @Override
@@ -178,4 +187,15 @@ public class HomeFragment extends Fragment
     }
 
 
+    @Override
+    public void onEdit(Contact contact) {
+        // pass contact to dialog
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("edit", contact);
+        AddContactDialog dialogFragment = new AddContactDialog(this);
+        dialogFragment.setArguments(bundle);
+
+        dialogFragment.show(addContactDialogTransaction(), "dialog");
+
+    }
 }

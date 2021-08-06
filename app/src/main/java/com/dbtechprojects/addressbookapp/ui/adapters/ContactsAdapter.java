@@ -19,15 +19,18 @@ import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVViewHolder> {
     private List<Contact> dataSet = new ArrayList<>();
-    private onDeleteListener deleteListener;
-    private onCallListener callListener;
+    private final onDeleteListener deleteListener;
+    private final onCallListener callListener;
+    private final onEditListener editListener;
 
     public ContactsAdapter(
             onDeleteListener deleteListener,
-            onCallListener callListener
+            onCallListener callListener,
+            onEditListener editListener
     ) {
         this.deleteListener = deleteListener;
         this.callListener = callListener;
+        this.editListener =editListener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -44,7 +47,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
 
     @Override
     public void onBindViewHolder(@NonNull RVViewHolder holder, int position) {
-        holder.bind(dataSet.get(position), deleteListener, callListener);
+        holder.bind(dataSet.get(position), deleteListener, callListener, editListener);
     }
 
     @Override
@@ -66,10 +69,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
         }
 
         @SuppressLint("SetTextI18n")
-        public void bind(Contact currentItem, onDeleteListener deleteListener, onCallListener onCallListener) {
+        public void bind(Contact currentItem, onDeleteListener deleteListener, onCallListener onCallListener, onEditListener onEditListener) {
             binding.rvItemTvName.setText(currentItem.firstName + " " + currentItem.lastName);
             binding.rvItemDelete.setOnClickListener(v -> deleteListener.onDelete(currentItem));
             binding.rvItemIvphone.setOnClickListener(v -> onCallListener.onCall(currentItem));
+            binding.rvItemEdit.setOnClickListener(v -> onEditListener.onEdit(currentItem));
         }
 
     }
@@ -80,6 +84,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
 
     public interface onCallListener{
         void onCall(Contact contact);
+    }
+
+    public interface onEditListener{
+        void onEdit(Contact contact);
     }
 }
 

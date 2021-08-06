@@ -28,9 +28,21 @@
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/call_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_tv_name"
-        app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
+        app:layout_constraintEnd_toStartOf="@id/rv_item_edit"
         app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name"
         app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+
+    <ImageView
+        android:id="@+id/rv_item_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/edit_contact"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
+        app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
+
 
     <ImageView
         android:id="@+id/rv_item_delete"
