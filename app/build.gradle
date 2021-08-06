@@ -59,4 +59,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
 
+    //dexter for runtime permission requests
+    implementation 'com.karumi:dexter:6.0.1'
+
 }

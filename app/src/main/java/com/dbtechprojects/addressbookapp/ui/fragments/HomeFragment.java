@@ -4,16 +4,16 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +24,13 @@ import com.dbtechprojects.addressbookapp.models.Contact;
 import com.dbtechprojects.addressbookapp.ui.adapters.ContactsAdapter;
 import com.dbtechprojects.addressbookapp.ui.dialogs.AddContactDialog;
 import com.dbtechprojects.addressbookapp.ui.viewmodels.HomeViewModel;
+import com.dbtechprojects.addressbookapp.utils.Constants;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -52,6 +59,7 @@ public class HomeFragment extends Fragment
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -61,6 +69,7 @@ public class HomeFragment extends Fragment
         binding.addContactButton.setOnClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initObservers() {
         viewModel.getAllContacts().observe(getViewLifecycleOwner(), contacts -> {
             if (contacts == null || contacts.isEmpty()) {
@@ -142,17 +151,30 @@ public class HomeFragment extends Fragment
     }
 
     private void executePhoneCall(Contact contact) {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.CALL_PHONE) ==
-                PackageManager.PERMISSION_GRANTED) {
-            // permissions granted so we can complete the call
-            Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:" + contact.phone));
-            startActivity(callIntent);
-        } else {
-            //Ask for phone call permission
+        Dexter.withActivity(getActivity())
+                .withPermissions(
+                        Manifest.permission.CALL_PHONE
+                ).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                if (report.areAllPermissionsGranted()){
+                    // call number
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:"+ contact.phone));
+                    startActivity(callIntent);
+                } else if (report.isAnyPermissionPermanentlyDenied()){
+                    // show permission denied message
+                    Log.d("PERM", "DENIED");
+                    Constants.showSettingsSnackBar(binding.getRoot(), requireActivity());
+                }
 
-        }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                token.continuePermissionRequest();
+            }
+        }).check();
     }
 
 
