@@ -13,6 +13,9 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @HiltViewModel
@@ -37,7 +40,7 @@ public class HomeViewModel extends ViewModel {
         Completable.fromAction(() -> contactsDatabaseDao
                 .insertContact(contact))
                 .subscribeOn(Schedulers.io())
-                .onErrorComplete()
+                .doOnError(throwable -> dbMessages.postValue("Error saving contact"))
                 .doOnComplete(() -> dbMessages.postValue("Contact saved"))
                 .subscribe();
 
@@ -47,7 +50,7 @@ public class HomeViewModel extends ViewModel {
         Completable.fromAction(() -> contactsDatabaseDao
                 .deleteContact(contact))
                 .subscribeOn(Schedulers.io())
-                .onErrorComplete()
+                .doOnError(throwable -> dbMessages.postValue("Error deleting contact"))
                 .doOnComplete(() -> dbMessages.postValue("Contact deleted"))
                 .subscribe();
 
