@@ -3,7 +3,6 @@ package com.dbtechprojects.addressbookapp.ui.adapters;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import com.dbtechprojects.addressbookapp.databinding.PhoneNumberItemBinding;
 import com.dbtechprojects.addressbookapp.models.Contact;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVViewHolder> {
