@@ -23,4 +23,5 @@
     <string name="permission_denied">"Permission has been permanently denied, CLICK HERE to enable"</string>
     <string name="edit_contact">edit contact</string>
     <string name="update">Update</string>
+    <string name="update_contact">Update Contact</string>
 </resources>

@@ -63,6 +63,7 @@ public class AddContactDialog extends DialogFragment {
 
     private void setupEditMode() {
         binding.SaveButton.setText(R.string.update);
+        binding.AddContactDialogTitle.setText(R.string.update_contact);
         Contact contact = (Contact) getArguments().getSerializable("edit");
         editContact = contact;
         if (contact.firstName != null) binding.textFieldFirstName.getEditText().setText(contact.firstName);
