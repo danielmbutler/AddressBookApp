@@ -2,6 +2,7 @@ package com.dbtechprojects.addressbookapp.ui.fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -42,7 +43,8 @@ public class HomeFragment extends Fragment
         AddContactDialog.SaveContact,
         ContactsAdapter.onCallListener,
         ContactsAdapter.onDeleteListener,
-        ContactsAdapter.onEditListener
+        ContactsAdapter.onEditListener,
+        ContactsAdapter.onVideoCallListener
 
 {
 
@@ -96,7 +98,7 @@ public class HomeFragment extends Fragment
     }
 
     private void setupRecyclerView() {
-        adapter = new ContactsAdapter(this, this, this);
+        adapter = new ContactsAdapter(this, this, this, this);
         binding.contactsRecyclerView.setAdapter(adapter);
 
     }
@@ -203,6 +205,19 @@ public class HomeFragment extends Fragment
         dialogFragment.setArguments(bundle);
 
         dialogFragment.show(addContactDialogTransaction(), "dialog");
+
+    }
+
+    @Override
+    public void onVideoCall(Contact contact) {
+        try{
+            Intent videoCall= new Intent("com.android.phone.videocall");
+            videoCall.putExtra("videocall", true);
+            videoCall.setData(Uri.parse("tel:" + contact.phone));
+            startActivity(videoCall);
+        }catch (ActivityNotFoundException e){
+            Constants.showToast("no default video recorded found", requireActivity());
+        }
 
     }
 }

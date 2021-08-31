@@ -20,15 +20,18 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
     private final onDeleteListener deleteListener;
     private final onCallListener callListener;
     private final onEditListener editListener;
+    private final onVideoCallListener videoCallListener;
 
     public ContactsAdapter(
             onDeleteListener deleteListener,
             onCallListener callListener,
-            onEditListener editListener
+            onEditListener editListener,
+            onVideoCallListener videoCallListener
     ) {
         this.deleteListener = deleteListener;
         this.callListener = callListener;
         this.editListener =editListener;
+        this.videoCallListener = videoCallListener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -45,7 +48,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
 
     @Override
     public void onBindViewHolder(@NonNull RVViewHolder holder, int position) {
-        holder.bind(dataSet.get(position), deleteListener, callListener, editListener);
+        holder.bind(dataSet.get(position), deleteListener, callListener, editListener, videoCallListener);
     }
 
     @Override
@@ -67,11 +70,17 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
         }
 
         @SuppressLint("SetTextI18n")
-        public void bind(Contact currentItem, onDeleteListener deleteListener, onCallListener onCallListener, onEditListener onEditListener) {
+        public void bind(Contact currentItem,
+                         onDeleteListener deleteListener,
+                         onCallListener onCallListener,
+                         onEditListener onEditListener,
+                         onVideoCallListener videoCallListener)
+        {
             binding.rvItemTvName.setText(currentItem.firstName + " " + currentItem.lastName);
             binding.rvItemDelete.setOnClickListener(v -> deleteListener.onDelete(currentItem));
             binding.rvItemIvphone.setOnClickListener(v -> onCallListener.onCall(currentItem));
             binding.rvItemEdit.setOnClickListener(v -> onEditListener.onEdit(currentItem));
+            binding.rvItemVideo.setOnClickListener(v -> videoCallListener.onVideoCall(currentItem));
         }
 
     }
@@ -86,6 +95,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
 
     public interface onEditListener{
         void onEdit(Contact contact);
+    }
+    public interface onVideoCallListener{
+        void onVideoCall(Contact contact);
     }
 }
 
