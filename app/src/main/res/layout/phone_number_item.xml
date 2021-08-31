@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="6dp"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    android:layout_height="wrap_content">
+    android:background="@color/white"
+    android:padding="6dp"
+    >
 
     <TextView
         android:id="@+id/rv_item_tv_name"
@@ -14,8 +15,8 @@
         android:layout_height="wrap_content"
         android:text="@string/first_name"
         android:textColor="@color/textColor"
-        android:textStyle="bold"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rv_item_ivphone"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,47 +24,43 @@
 
     <ImageView
         android:id="@+id/rv_item_ivphone"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/call_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_tv_name"
         app:layout_constraintEnd_toStartOf="@id/rv_item_video"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name"
-        app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name" />
 
     <ImageView
         android:id="@+id/rv_item_edit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/edit_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
-        app:srcCompat="@drawable/ic_baseline_edit_24" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
 
     <ImageView
         android:id="@+id/rv_item_video"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/video_call"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toStartOf="@id/rv_item_edit"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
-        app:srcCompat="@drawable/ic_baseline_videocam_24" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
 
 
     <ImageView
         android:id="@+id/rv_item_delete"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/delete_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
-        app:srcCompat="@drawable/ic_baseline_delete_24" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

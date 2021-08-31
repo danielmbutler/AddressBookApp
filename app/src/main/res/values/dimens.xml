@@ -5,4 +5,5 @@
     <dimen name="text_field_margin">12dp</dimen>
     <dimen name="title_size">32sp</dimen>
     <dimen name="paragraph_text_size">24sp</dimen>
+    <dimen name="icon_size">48dp</dimen>
 </resources>

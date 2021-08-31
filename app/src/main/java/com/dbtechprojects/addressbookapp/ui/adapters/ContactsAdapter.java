@@ -30,7 +30,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
     ) {
         this.deleteListener = deleteListener;
         this.callListener = callListener;
-        this.editListener =editListener;
+        this.editListener = editListener;
         this.videoCallListener = videoCallListener;
     }
 
@@ -74,29 +74,35 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
                          onDeleteListener deleteListener,
                          onCallListener onCallListener,
                          onEditListener onEditListener,
-                         onVideoCallListener videoCallListener)
-        {
+                         onVideoCallListener videoCallListener) {
             binding.rvItemTvName.setText(currentItem.firstName + " " + currentItem.lastName);
             binding.rvItemDelete.setOnClickListener(v -> deleteListener.onDelete(currentItem));
-            binding.rvItemIvphone.setOnClickListener(v -> onCallListener.onCall(currentItem));
+            binding.rvItemIvphone.setOnClickListener(v -> binding.rvItemIvphone.animate().rotation(90f).setDuration(1000).setStartDelay(0)
+                    .withEndAction(() -> {
+                        //animation ended
+                        onCallListener.onCall(currentItem);
+                        binding.rvItemIvphone.setRotation(0f);
+
+                    }));
             binding.rvItemEdit.setOnClickListener(v -> onEditListener.onEdit(currentItem));
             binding.rvItemVideo.setOnClickListener(v -> videoCallListener.onVideoCall(currentItem));
         }
 
     }
 
-    public interface onDeleteListener{
+    public interface onDeleteListener {
         void onDelete(Contact contact);
     }
 
-    public interface onCallListener{
+    public interface onCallListener {
         void onCall(Contact contact);
     }
 
-    public interface onEditListener{
+    public interface onEditListener {
         void onEdit(Contact contact);
     }
-    public interface onVideoCallListener{
+
+    public interface onVideoCallListener {
         void onVideoCall(Contact contact);
     }
 }
