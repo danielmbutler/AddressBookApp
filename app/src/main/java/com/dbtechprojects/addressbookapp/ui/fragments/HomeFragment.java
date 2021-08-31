@@ -3,7 +3,6 @@ package com.dbtechprojects.addressbookapp.ui.fragments;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -44,9 +44,7 @@ public class HomeFragment extends Fragment
         ContactsAdapter.onCallListener,
         ContactsAdapter.onDeleteListener,
         ContactsAdapter.onEditListener,
-        ContactsAdapter.onVideoCallListener
-
-{
+        ContactsAdapter.onVideoCallListener {
 
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
@@ -91,7 +89,7 @@ public class HomeFragment extends Fragment
 
         // observe messages from db events
         viewModel.dbMessages.observe(getViewLifecycleOwner(), message -> {
-            if (message != null  && !message.isEmpty()){
+            if (message != null && !message.isEmpty()) {
                 Constants.showToast(message, requireContext());
             }
         });
@@ -147,17 +145,9 @@ public class HomeFragment extends Fragment
         alertDialog.setMessage(getString(R.string.contact_Delete_warning));
 
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                viewModel.deleteContact(contact);
-            }
-        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> viewModel.deleteContact(contact));
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> alertDialog.dismiss());
 
         alertDialog.show();
     }
@@ -176,12 +166,12 @@ public class HomeFragment extends Fragment
                 ).withListener(new MultiplePermissionsListener() {
             @Override
             public void onPermissionsChecked(MultiplePermissionsReport report) {
-                if (report.areAllPermissionsGranted()){
+                if (report.areAllPermissionsGranted()) {
                     // call number
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:"+ contact.phone));
+                    callIntent.setData(Uri.parse("tel:" + contact.phone));
                     startActivity(callIntent);
-                } else if (report.isAnyPermissionPermanentlyDenied()){
+                } else if (report.isAnyPermissionPermanentlyDenied()) {
                     // show permission denied message
                     Constants.showSettingsSnackBar(binding.getRoot(), requireActivity());
                 }
@@ -210,12 +200,12 @@ public class HomeFragment extends Fragment
 
     @Override
     public void onVideoCall(Contact contact) {
-        try{
-            Intent videoCall= new Intent("com.android.phone.videocall");
+        try {
+            Intent videoCall = new Intent("com.android.phone.videocall");
             videoCall.putExtra("videocall", true);
             videoCall.setData(Uri.parse("tel:" + contact.phone));
             startActivity(videoCall);
-        }catch (ActivityNotFoundException e){
+        } catch (ActivityNotFoundException e) {
             Constants.showToast("no default video recorded found", requireActivity());
         }
 
