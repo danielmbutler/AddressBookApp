@@ -24,4 +24,5 @@
     <string name="edit_contact">edit contact</string>
     <string name="update">Update</string>
     <string name="update_contact">Update Contact</string>
+    <string name="video_call">video call</string>
 </resources>
