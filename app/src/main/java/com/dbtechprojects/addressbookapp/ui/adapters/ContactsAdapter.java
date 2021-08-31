@@ -85,7 +85,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RVView
 
                     }));
             binding.rvItemEdit.setOnClickListener(v -> onEditListener.onEdit(currentItem));
-            binding.rvItemVideo.setOnClickListener(v -> videoCallListener.onVideoCall(currentItem));
+            binding.rvItemVideo.setOnClickListener(v ->
+                    binding.rvItemVideo.animate().scaleYBy(0.5f).setDuration(1000).setStartDelay(0)
+                    .withEndAction(() -> {
+                        //animation ended
+                        videoCallListener.onVideoCall(currentItem);
+                        binding.rvItemVideo.setScaleY(1f);
+
+                    }));
         }
 
     }

@@ -206,7 +206,7 @@ public class HomeFragment extends Fragment
             videoCall.setData(Uri.parse("tel:" + contact.phone));
             startActivity(videoCall);
         } catch (ActivityNotFoundException e) {
-            Constants.showToast("no default video recorded found", requireActivity());
+            Constants.showToast("no default video call app found", requireActivity());
         }
 
     }

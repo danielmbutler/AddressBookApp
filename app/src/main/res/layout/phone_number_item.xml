@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,8 @@
     android:layout_margin="6dp"
     android:background="@color/white"
     android:padding="6dp"
-    >
+    tools:showPaths="true"
+    app:layoutDescription="@xml/phone_number_item_scene">
 
     <TextView
         android:id="@+id/rv_item_tv_name"
@@ -30,7 +31,8 @@
         android:contentDescription="@string/call_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_tv_name"
         app:layout_constraintEnd_toStartOf="@id/rv_item_video"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_tv_name"
+        app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
     <ImageView
         android:id="@+id/rv_item_edit"
@@ -40,7 +42,8 @@
         android:contentDescription="@string/edit_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toStartOf="@id/rv_item_delete"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     <ImageView
         android:id="@+id/rv_item_video"
@@ -50,7 +53,8 @@
         android:contentDescription="@string/video_call"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toStartOf="@id/rv_item_edit"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
+        app:srcCompat="@drawable/ic_baseline_videocam_24" />
 
 
     <ImageView
@@ -61,6 +65,7 @@
         android:contentDescription="@string/delete_contact"
         app:layout_constraintBottom_toBottomOf="@+id/rv_item_ivphone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone" />
+        app:layout_constraintTop_toTopOf="@+id/rv_item_ivphone"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
