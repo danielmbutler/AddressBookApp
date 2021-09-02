@@ -1,18 +1,12 @@
 package com.dbtechprojects.addressbookapp.ui.adapters;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dbtechprojects.addressbookapp.R;
